@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>morse</title>
+</head>
+
+<body>
+    <script src="MorseRecord.js"></script>
+    <script src="MorseParse.js"></script>
+</body>
+<script>
+const keyCode = 49;
+var morse = new MorseRecord();
+document.addEventListener('keydown', e => {
+    if (e.keyCode !== keyCode) return;
+    morse.keydown();
+});
+document.addEventListener('keyup', e => {
+    if (e.keyCode !== keyCode) return;
+    morse.keyup();
+});
+document.addEventListener('keydown', e=> {
+    if (e.keyCode == 32)  {
+        document.write(MorseParse.instance.getString(morse.getMorse()))
+        morse.reset();
+        morse.start();
+    }
+})
+</script>
+
+</html>
