@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <title></title>
+    <style>
+    .button {
+        width: 100px;
+        height: 100px;
+        background: red;
+        border-radius: 50%;
+        margin: 30px auto;
+    }
+    
+    .ok {
+        width: 40px;
+        height: 40px;
+        background: blue;
+        border-radius: 50%;
+        margin: 40px auto;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="button" id="button">
+    </div>
+    <div class="ok" id="ok"></div>
+    <div class="result" id="result"></div>
+    <script src="MorseRecord.js"></script>
+    <script src="MorseParse.js"></script>
+    <script>
+    var morse = new MorseRecord();
+    var button = document.querySelector('#button');
+    button.addEventListener('touchstart', () => {
+        morse.keydown();
+    })
+    button.addEventListener('touchend', () => {
+        morse.keyup();
+    })
+    var ok = document.querySelector('#ok');
+    var result = document.querySelector('#result');
+
+    ok.addEventListener('touchend', () => {
+        result.innerHTML = MorseParse.instance.getString(morse.getMorse());
+    })
+    </script>
+</body>
+
+</html>
