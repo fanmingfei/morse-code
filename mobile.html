@@ -34,11 +34,15 @@
     <script>
     var morse = new MorseRecord();
     var button = document.querySelector('#button');
-    button.addEventListener('touchstart', () => {
+    button.addEventListener('touchstart', (e) => {
         morse.keydown();
+        e.stopPropagation();
+        e.preventDefault();
     })
     button.addEventListener('touchend', () => {
         morse.keyup();
+        e.stopPropagation();
+        e.preventDefault();
     })
     var ok = document.querySelector('#ok');
     var result = document.querySelector('#result');
