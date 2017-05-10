@@ -7,22 +7,27 @@
 </head>
 
 <body>
+    <audio src="./mp3.mp3" id="ad"></audio>
     <script src="MorseRecord.js"></script>
     <script src="MorseParse.js"></script>
 </body>
 <script>
 const keyCode = 49;
 var morse = new MorseRecord();
+var ad = document.querySelector('#ad');
 document.addEventListener('keydown', e => {
     if (e.keyCode !== keyCode) return;
+    ad.currentTime = 0;
+    ad.play();
     morse.keydown();
 });
 document.addEventListener('keyup', e => {
     if (e.keyCode !== keyCode) return;
+    ad.pause();
     morse.keyup();
 });
-document.addEventListener('keydown', e=> {
-    if (e.keyCode == 32)  {
+document.addEventListener('keydown', e => {
+    if (e.keyCode == 32) {
         document.write(MorseParse.instance.getString(morse.getMorse()))
         morse.reset();
         morse.start();

@@ -33,14 +33,14 @@
     </div>
     <div class="ok" id="ok"></div>
     <div class="result" id="result"></div>
-    <audio src="./mp3.mp3" id="ad"></audio>
+    <audio src="./mp3.mp3" preload id="ad"></audio>
     <script src="MorseRecord.js"></script>
     <script src="MorseParse.js"></script>
     <script>
     var morse = new MorseRecord();
     var button = document.querySelector('#button');
     button.addEventListener('touchstart', (e) => {
-        ad.currentTime = 0;
+        ad.currentTime = 0.03;
         ad.play();
         morse.keydown();
         button.classList.add('hover');
@@ -48,6 +48,7 @@
         e.preventDefault();
     })
     button.addEventListener('touchend', (e) => {
+        ad.currentTime = 0.03;
         ad.pause();
         morse.keyup();
         button.classList.remove('hover');
